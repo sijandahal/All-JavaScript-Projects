@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Tip Calculator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex min-h-screen items-center justify-center bg-purple-600">
+    <div class="wrapper bg-yellow-300 w-2/6 p-8 rounded-md">
+        <div class="main">
+            <h1 class="main__title text-2xl">Quick Tip</h1>
+            <div class="bill">
+                <p class="bill__label">Enter The Amount</p>
+                <input type="number" class="bill__input" value="0">
+            </div>
+            <div class="range">
+                <label for="minmax-range" class="range__label block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter your tip</label>
+                <input id="minmax-range" type="range" min="0" max="100" value="5" class="range__slider w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
+                <p class="range__amount" id = "amount">100%</p>
+            </div>
+            <div class="total">
+                <p> Total </p>
+                <div class="total__amount">500</div>
+            </div>
+        </div>
+
+        <div class="split__range">
+            <div class="split__bill">
+                <p class="split__person">6 Persons</p>
+            </div>
+           
+            <input id="minmax-range" type="range" min="1" max="10" value="5" class="split__range__slider w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
+            <div class="split__bill__each"> 
+               <span>Bill each</span>
+               <span class="split__bill__amount">$50.00</span>
+            </div>
+            <div class="split__tip"> 
+                <span>Tip each</span>
+                <span class="split__tip__amount">$ 50.00</span>
+             </div>
+        </div>
+    </div>
+</body>
+</html>
+<script src="./script.js"></script>
