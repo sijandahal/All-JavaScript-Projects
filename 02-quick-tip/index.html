@@ -6,38 +6,38 @@
     <title>Quick Tip Calculator</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="flex min-h-screen items-center justify-center bg-purple-600">
-    <div class="wrapper bg-yellow-300 w-2/6 p-8 rounded-md">
+<body class="flex min-h-screen flex-col items-center justify-center bg-slate-900 text-white">
+    <h1 class="main__title text-[40px] text-white text-bold mb-5">Tip Calculator</h1>
+    <div class="wrapper bg-gray-700	 w-2/6 p-8 rounded-md">
         <div class="main">
-            <h1 class="main__title text-2xl">Quick Tip</h1>
-            <div class="bill">
-                <p class="bill__label">Enter The Amount</p>
-                <input type="number" class="bill__input" value="0">
+            <div class="bill mb-4">
+                <p class="bill__label mb-3">Enter The Amount</p>
+                <input type="number" id = "billAmount" class="bill__input block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700" value="0">
             </div>
-            <div class="range">
-                <label for="minmax-range" class="range__label block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter your tip</label>
+            <div class="range pb-1 border-b border-white-500 ">
+                <label for="minmax-range" class="range__label block ">Enter your tip</label>
                 <input id="minmax-range" type="range" min="0" max="100" value="5" class="range__slider w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
-                <p class="range__amount" id = "amount">100%</p>
+                <p class="range__amount flex justify-end" id = "amount ">100%</p>
             </div>
-            <div class="total">
-                <p> Total </p>
+            <div class="total flex items-center justify-between mt-4 pb-3 border-b-4 border-white-500 ">
+                <p class="font-bold"> Total Amount</p>
                 <div class="total__amount">500</div>
             </div>
         </div>
 
-        <div class="split__range">
+        <div class="split__range mt-5">
             <div class="split__bill">
-                <p class="split__person">6 Persons</p>
+                <p class="font-bold"> Total number of Person: <span class="split__person font-normal italic ">6</span></p>
             </div>
            
             <input id="minmax-range" type="range" min="1" max="10" value="5" class="split__range__slider w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
-            <div class="split__bill__each"> 
-               <span>Bill each</span>
-               <span class="split__bill__amount">$50.00</span>
+            <div class="split__bill__each flex justify-between mt-4"> 
+               <span class="font-bold">Bill each person</span>
+               <span class="split__bill__amount font-normal italic">$50.00</span>
             </div>
-            <div class="split__tip"> 
-                <span>Tip each</span>
-                <span class="split__tip__amount">$ 50.00</span>
+            <div class="split__tip flex justify-between"> 
+                <span class="font-bold ">Tip each person</span>
+                <span class="split__tip__amount font-normal italic">$ 50.00</span>
              </div>
         </div>
     </div>

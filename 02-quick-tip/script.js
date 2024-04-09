@@ -1,72 +1,66 @@
 const finalBillAmount = document.querySelector(".bill__input");
-const tipsInPercent = document.querySelector(".range__slider");
-let totalTipAmount;
-const splitSlider = document.querySelector(".split__range__slider");
-let tipAmount = document.querySelector(".range__amount");
-let totalAmountafterTips = document.querySelector(".total__amount");
-let eachBillAmount = document.querySelector(".split__bill__amount");
-let eachTipAmount = document.querySelector(".split__tip__amount");
-let totalNumberOfPerson = document.querySelector(".split__person");
+const tipsRangeSlider = document.querySelector(".range__slider");
+const splitRangeSlider = document.querySelector(".split__range__slider");
+let tipAmountDisplay = document.querySelector(".range__amount");
+let totalAmountDisplay = document.querySelector(".total__amount");
+let eachBillAmountDisplay = document.querySelector(".split__bill__amount");
+let eachTipAmountDisplay = document.querySelector(".split__tip__amount");
+let totalPersonDisplay = document.querySelector(".split__person");
+
+
 let totalBill;
-let tipsInPercentValue;
-let splitSliderValue;
-let total;
+let tipPercentage;
+let totalAmount;
+let splitCountPersons;
 let splitTotalBill;
 let splitTotalTip;
 
 //Event Listener on Input
 
 finalBillAmount.addEventListener("input", finalTotalAmount);
-tipsInPercent.addEventListener("change", finalTotalAmount);
-splitSlider.addEventListener("change", finalTotalAmount);
+tipsRangeSlider.addEventListener("change", finalTotalAmount);
+splitRangeSlider.addEventListener("change", finalTotalAmount);
 
 function finalTotalAmount() {
   totalBill = parseInt(finalBillAmount.value);
-  totalTipAmount = tipsInPercent.value;
-  splitSliderValue = splitSlider.value;
-  console.log(totalTipAmount);
-
-  tipAmount.textContent = totalTipAmount + "%";
-  eachBillAmount.textContent = splitSliderValue + "$" + " ";
-   
-  if (typeof totalBill != undefined && totalBill >=0) {
-    total = (totalTipAmount / 100) * totalBill + totalBill;
-    console.log(total);
-    // console.log(total)
-    totalAmountafterTips.textContent = total;
-    console.log(splitSliderValue);
+  if (totalBill < 0 ) {
+    alert("Please enter Postive Bill Amount");
+    document.getElementById("billAmount").value = 0;
+    tipsRangeSlider.disabled = true
+    splitRangeSlider.disabled = true
   }
+
   else {
-    totalAmountafterTips.textContent = "Enter a positive amount"
+    tipsRangeSlider.disabled = false
+    splitRangeSlider.disabled = false
+    tipPercentage = parseInt(tipsRangeSlider.value);
+    splitCountPersons = parseInt(splitRangeSlider.value);
+  
+    tipAmountDisplay.textContent = `${tipPercentage}%`;
+  
+    if (typeof totalBill != undefined && totalBill >= 0) {
+      totalAmount = (tipPercentage / 100) * totalBill + totalBill;
+      console.log(totalAmount);
+      totalAmountDisplay.textContent = totalAmount.toFixed(2);
+    } else {
+      totalAmountDisplay.textContent = "Enter a positive amount";
+    }
+  
+  //bottomhalf calculation
+  
+    splitTotalBill = totalBill / splitCountPersons;
+    eachBillAmountDisplay.textContent = `$${splitTotalBill.toFixed()}`
+  
+    if (splitCountPersons <= 1) {
+      totalPersonDisplay.textContent =  `${splitCountPersons}`;
+    } else totalPersonDisplay.textContent = `${splitCountPersons}`;
+  
+    splitTotalTip = ((tipPercentage / 100) * totalBill) / splitCountPersons;
+    console.log(splitTotalTip)
+    eachTipAmountDisplay.textContent = `${splitTotalTip.toFixed(2)}`;
+
+
+    
   }
-
-  splitTotalBill = totalBill / splitSliderValue;
-  console.log(splitSliderValue);
-  //console.log(splitTotalBill);
-  eachBillAmount.textContent = "$" + " " + splitTotalBill;
-
-  splitTotalTip = ((totalTipAmount / 100) * totalBill) / splitSliderValue;
-  eachTipAmount.textContent = "$" + " " + splitTotalTip;
-}
-
-
-// function calculateTotalAmount() {
+  }
   
-  
-
-//   splitSlider.addEventListener("change", () => {
-
-//     updateTotalAmount();
-//   });
-// }
-
-// function updateTotalAmount() {
-
-
-// calculateTotalAmount();
-
-
-// if (splitSliderValue <= 1) {
-//   totalNumberOfPerson.textContent = splitSliderValue + " " + "person";
-// } else totalNumberOfPerson.textContent = splitSliderValue + " " + "persons";
-// console.log(splitSliderValue);
