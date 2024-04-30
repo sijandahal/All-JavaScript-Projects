@@ -1,0 +1,30 @@
+.countries {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    row-gap: 20px;
+    column-gap: 30px;
+}
+
+.details {
+    padding: 10px;
+    box-shadow: 10px  10px 10px rgba(0,0,0,0.2);
+}
+
+p {
+    font-weight: 600;
+}
+
+span {
+    font-weight: normal;
+}
+
+.image__wrapper {
+    height: 170px;
+}
+
+.image__wrapper img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1/3;
+    object-fit: cover;
+}

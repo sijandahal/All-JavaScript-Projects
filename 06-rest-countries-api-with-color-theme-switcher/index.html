@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
+      rel="stylesheet"
+    />
+    <link href="./src/output.css" rel="stylesheet" />
+    <script>
+      // It's best to inline this in `head` to avoid FOUC (flash of unstyled content) when changing pages or themes
+      if (
+        localStorage.getItem("color-theme") === "dark" ||
+        (!("color-theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    </script>
+  </head>
+  <body>
+    <main class="bg-veryLightGray dark:bg-veryDarkBlueBackground">
+      <header class="shadow-sm bg-white dark:bg-darkBlue">
+        <div class="container m-auto flex justify-between py-6">
+          <h1 class="text-xl font-bold dark:text-white">Where in the world?</h1>
+          <button
+            id="theme-toggle"
+            type="button"
+            class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm"
+          >
+            <svg
+              id="theme-toggle-dark-icon"
+              class="w-5 h-5 hidden"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+              ></path>
+            </svg>
+            <svg
+              id="theme-toggle-light-icon"
+              class="w-5 h-5 hidden"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <div class="top__bar my-12">
+        <div class="container mx-auto flex justify-between">
+          <div class="input__icons relative">
+            <i class="absolute top-2/4 -translate-y-1/2 left-10"
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                x="0px"
+                y="0px"
+                width="25"
+                height="25"
+                viewBox="0 0 50 50"
+              >
+                <path
+                  d="M 21 3 C 11.654545 3 4 10.654545 4 20 C 4 29.345455 11.654545 37 21 37 C 24.701287 37 28.127393 35.786719 30.927734 33.755859 L 44.085938 46.914062 L 46.914062 44.085938 L 33.875 31.046875 C 36.43682 28.068316 38 24.210207 38 20 C 38 10.654545 30.345455 3 21 3 z M 21 5 C 29.254545 5 36 11.745455 36 20 C 36 28.254545 29.254545 35 21 35 C 12.745455 35 6 28.254545 6 20 C 6 11.745455 12.745455 5 21 5 z"
+                ></path></svg
+            ></i>
+            <input
+              type="text"
+              name="search__countries"
+              class="search__countries w-[30rem] rounded-md py-4 pl-20 pr-5 shadow-lg border-0 dark:bg-darkBlue dark:placeholder:text-white"
+              placeholder="Search for a country..."
+            />
+          </div>
+
+          <select
+            name="regions"
+            id="regions"
+            class="selectRegions dark:bg-darkBlue dark:text-white border-0"
+          >
+            <option selected disabled>Filter by Region</option>
+            <option value="africa">Africa</option>
+            <option value="america">America</option>
+            <option value="asia">Asia</option>
+            <option value="europe">Europe</option>
+            <option value="oceania">Oceania</option>
+          </select>
+        </div>
+      </div>
+      <!-- <div class="loader">Hello</div> -->
+      <div
+        class="countries container m-auto grid grid-cols-4 gap-[4.688rem]"
+      ></div>
+    </main>
+    <section
+      class="bg-blue-900 relative place-items-center grid h-screen w-screen gap-4 loader"
+    >
+      <!--   ITEM 1 -->
+      <div
+        class="bg-blue-500 w-48 h-48 absolute animate-ping rounded-full delay-5s shadow-xl"
+      ></div>
+      <!--   ITEM 2 -->
+      <div
+        class="bg-blue-400 w-32 h-32 absolute animate-ping rounded-full shadow-xl"
+      ></div>
+      <!--   ITEM 3 -->
+      <div
+        class="bg-white w-24 h-24 absolute animate-pulse rounded-full shadow-xl"
+      ></div>
+      <!--   SVG LOGO -->
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="text-blue-900 filter mix-blend-overlay h-16 w-16"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M5.636 18.364a9 9 0 010-12.728m12.728 0a9 9 0 010 12.728m-9.9-2.829a5 5 0 010-7.07m7.072 0a5 5 0 010 7.07M13 12a1 1 0 11-2 0 1 1 0 012 0z"
+        />
+      </svg>
+    </section>
+    <script src="./themeSwitcher.js"></script>
+    <script src="../path/to/flowbite/dist/flowbite.bundle.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>
